@@ -202,9 +202,12 @@ document
 
 // Function to send hint
 function sendHint(hintText) {
-  sendMessage(hintText);
+  // Enviar el hint como si fuera un mensaje
+  const inputElement = document.getElementById("user-input");
+  inputElement.value = hintText; // Coloca el hint en el input
+  sendMessage(); // Usa la función sendMessage para procesar el hint como mensaje
 
-  // Hide the clicked hint
+  // Ocultar el botón del hint que se usó
   const hintButtons = document.getElementsByClassName("hint");
   for (let i = 0; i < hintButtons.length; i++) {
     if (hintButtons[i].textContent === hintText) {

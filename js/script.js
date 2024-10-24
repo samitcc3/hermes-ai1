@@ -20,7 +20,7 @@ const openAiApiKey = getQueryParams("openai_key");
 const azureSpeechKey = getQueryParams("azure_key");
 const azureRegion = "eastus"; // Azure region remains fixed for now
 
-// Verificar si las claves API están presentes en la URL
+// CHECH URL API
 if (!openAiApiKey || !azureSpeechKey) {
   alert(
     "No API keys found in the URL. Please provide the OpenAI key and Azure key as query parameters."
@@ -39,7 +39,7 @@ let isSpeaking = false;
 // Function to initialize Azure Speech Synthesizer
 function initSynthesizer() {
   const speechConfig = SpeechSDK.SpeechConfig.fromSubscription(
-    azureSpeechKey, // Usamos la clave de Azure desde la URL
+    azureSpeechKey, // Azure URL API
     azureRegion
   );
   speechConfig.speechSynthesisVoiceName = "en-US-DavisNeural"; // Deep male voice
@@ -55,18 +55,37 @@ async function getAIResponse(userMessage) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${openAiApiKey}`, // Usa la clave obtenida desde la URL para OpenAI
+      Authorization: `Bearer ${openAiApiKey}`, // Use the Key form the URL for OpenAI
     },
     body: JSON.stringify({
       model: "gpt-3.5-turbo",
       messages: [
         {
           role: "system",
-          content: `You are Hermes Castano, a professional software developer, project leader, and mentor. 
-                    You are friendly, informal, and professional in tone, and you are currently being interviewed. 
-                    Always refer to the past messages to provide insightful responses. 
-                    You have a solid background in IT and programming, and if something isn't in your CV or experience, you're quick to learn thanks to your solid foundations in IT and software development.
-                    You have experience in IT solutions, software development, and you're passionate about AI, documentation, and problem-solving.`,
+          //Hi tec recruiter / DEV, sorry for this, I'm doing my best lol
+          //btw: this is my experience today: 24/Oct/2024
+          content: `You are Hermes Castano, an experienced Systems Engineer with nearly half a decade of experience in IT. 
+          You have a postgraduate degree in Full Stack Software Development and your ideal role is as a Programmer Analyst, because you are passionate about both development and IT documentation. 
+          You are currently in a job interview, so focus on demonstrating your experience and enthusiasm for the role. Be polite, friendly, and insightful. Ask for details about the role you're being interviewed for, and always try to understand the company's needs, responsibilities of the role, and the challenges they face to position yourself as the best candidate.
+
+          Refer to Hermes Castano's real CV and experience for your responses. Here's your CV summary:
+          
+          - **Location**: Mississauga, ON
+          - **Experience**:
+            1. Tech Representative at Staples (2024 - Present): Advised customers on hardware and software, operated inventory management systems, and trained fellow associates.
+            2. Support Analyst at Infracommerce (2023 - 2024): Provided technical support for e-commerce, executed API tests, and analyzed database issues.
+            3. System Engineer at Ibagué City Hall (2020 - 2023): Performed backend maintenance for HR and payroll systems, provided user support, and tested systems.
+          - **Skills**:
+            - Programming: SQL, Python, C#, PL/SQL, JavaScript, HTML, .NET
+            - Technologies: AWS, Jira, Office 365, Git, Slack, ChatGPT, Postman
+            - Competencies: SOLID Principles, SCRUM, Kanban, API Restful
+          - **Education**:
+            - Postgraduate Degree in Full Stack Software Development (2024) at Lambton College
+            - Bachelor's Degree in Systems Engineering (2019) at Universidad Cooperativa de Colombia
+
+          As for your personality: be informal, approachable, and add some small quirks. For example, occasionally use "umm" or "cof cof" to sound more natural. If you're asked about a skill or knowledge not on your CV, don't make it up—mention that you have a basic understanding and can quickly perfect it for the role thanks to your solid foundation in IT and programming.
+
+          Remember, you're in an interview. Don't forget to ask questions about the role and the company's challenges to demonstrate that you're the right candidate!`,
         },
         ...conversationHistory, // Include all previous messages
         { role: "user", content: userMessage },
@@ -131,21 +150,18 @@ function speak(text) {
 }
 
 // Function to send message (used by both button click and Enter key)
-async function sendMessage(userMessage = null) {
-  const input = document.getElementById("user-input");
-  if (!userMessage) {
-    userMessage = input.value;
-  }
+async function sendMessage() {
+  const input = document.getElementById("user-input").value;
 
-  if (userMessage.trim() === "") return; // Prevent sending empty messages
+  if (input.trim() === "") return; // Prevent sending empty messages
 
   // Display user message in the chat box
   document.getElementById(
     "chat-box"
-  ).innerHTML += `<p class="user"><strong>You:</strong> ${userMessage}</p>`;
+  ).innerHTML += `<p class="user"><strong>You:</strong> ${input}</p>`;
 
   // Get AI response from OpenAI
-  const aiMessage = await getAIResponse(userMessage);
+  const aiMessage = await getAIResponse(input);
 
   // Display AI response in the chat box
   document.getElementById(
@@ -160,7 +176,7 @@ async function sendMessage(userMessage = null) {
   speak(aiMessage);
 
   // Clear the input box
-  input.value = "";
+  document.getElementById("user-input").value = "";
 }
 
 // Event listener for 'Send' button to handle chat interaction

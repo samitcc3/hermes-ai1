@@ -1,0 +1,206 @@
+/* Global styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #121212;
+    color: #f1f1f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.chat-container {
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+}
+
+h1 {
+    text-align: center;
+    color: #ffffff;
+    font-size: 24px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+}
+
+/* Rounded Image */
+.image-container {
+    text-align: center;
+    margin: 15px 0;
+}
+
+.image-container img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid #007bff;
+}
+
+/* Social Icons */
+.social-icons {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.social-icons a {
+    font-size: 30px;
+    margin: 0 10px;
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #0056b3;
+}
+
+/* Informative Text */
+.info-text {
+    text-align: center;
+    font-size: 12px;
+    color: #bbb;
+}
+
+/* Hint Buttons */
+.hint-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
+.hint {
+    background-color: #2a2a2a;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    padding: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.hint:hover {
+    background-color: #007bff;
+}
+
+/* Chat box */
+#chat-box {
+    flex: 1;
+    background-color: #2a2a2a;
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 15px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+#chat-box p {
+    margin: 0;
+    padding: 5px;
+    border-radius: 5px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+#chat-box p.user {
+    text-align: right;
+    background-color: #007bff;
+    color: white;
+}
+
+#chat-box p.hermes {
+    text-align: left;
+    background-color: #333;
+    color: #f1f1f1;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#user-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+#user-input:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .chat-container {
+        width: 90%;
+        height: 80vh;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    #chat-box {
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 14px;
+    }
+}
+
+/* Shut Up Button */
+.shut-up-container {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.shut-up-btn {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.shut-up-btn:hover {
+    background-color: #cc0000;
+}

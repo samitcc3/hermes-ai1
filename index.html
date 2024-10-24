@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hermes Castano AI Chat</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="chat-container">
+        <h1>Hermes Castano AI Chat</h1>
+
+        <!-- Image -->
+        <div class="image-container">
+            <img src="images/imgSam.jfif" alt="Hermes Castano Profile">
+        </div>
+
+        <!-- Social Media Icons -->
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/in/samitcc3/" target="_blank" class="fab fa-linkedin"></a>
+            <a href="https://github.com/samitcc3" target="_blank" class="fab fa-github"></a>
+        </div>
+
+        <!-- Informative text below icons -->
+        <div class="info-text">
+            <p>Turn up the volume, this program speaks</p>
+        </div>
+
+        <!-- Hints Section -->
+        <div id="hint-container" class="hint-container">
+            <button class="hint" onclick="sendHint('Tell me about your professional experiences')">Tell me about your professional experiences</button>
+            <button class="hint" onclick="sendHint('Do you know about APIs and SQL?')">Do you know about APIs and SQL?</button>
+            <button class="hint" onclick="sendHint('How do you describe yourself?')">How do you describe yourself?</button>
+        </div>
+
+        <!-- Chatbox where conversation happens -->
+        <div id="chat-box">
+            <!-- Chat history will appear here -->
+        </div>
+
+        <!-- Input and Send Button -->
+        <div class="input-container">
+            <input type="text" id="user-input" placeholder="Ask me anything...">
+            <button id="send-btn">Send</button>
+        </div>
+
+        <!-- Shut Up, Hermes button -->
+        <div class="shut-up-container">
+            <button id="shut-up-btn" class="shut-up-btn">Shut Up, Hermes</button>
+        </div>
+    </div>
+
+    <!-- Include Azure Speech SDK -->
+    <script src="https://aka.ms/csspeech/jsbrowserpackageraw"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

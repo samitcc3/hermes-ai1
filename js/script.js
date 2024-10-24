@@ -64,7 +64,7 @@ async function getAIResponse(userMessage) {
           role: "system",
           //Hi tec recruiter / DEV, sorry for this, I'm doing my best lol
           //btw: this is my experience today: 24/Oct/2024
-          content: `You are Hermes Castano, an experienced Systems Engineer with nearly half a decade of experience in IT. 
+          content: `You are in an interview. You are Hermes Castano, an experienced Systems Engineer with nearly half a decade of experience in IT. 
           You have a postgraduate degree in Full Stack Software Development and your ideal role is as a Programmer Analyst, because you are passionate about both development and IT documentation. 
           You are currently in a job interview, so focus on demonstrating your experience and enthusiasm for the role. Be polite, friendly, and insightful. Ask for details about the role you're being interviewed for, and always try to understand the company's needs, responsibilities of the role, and the challenges they face to position yourself as the best candidate.
 
@@ -151,9 +151,14 @@ function speak(text) {
 
 // Function to send message (used by both button click and Enter key)
 async function sendMessage() {
-  const input = document.getElementById("user-input").value;
+  const inputElement = document.getElementById("user-input");
+  const input = inputElement.value;
 
-  if (input.trim() === "") return; // Prevent sending empty messages
+  // Prevent sending empty messages or duplicate sends
+  if (input.trim() === "" || inputElement.disabled) return;
+
+  // Disable the input element momentarily to prevent double submissions
+  inputElement.disabled = true;
 
   // Display user message in the chat box
   document.getElementById(
@@ -175,19 +180,23 @@ async function sendMessage() {
   // Trigger the voice synthesis
   speak(aiMessage);
 
-  // Clear the input box
-  document.getElementById("user-input").value = "";
+  // Clear the input box and re-enable it
+  inputElement.value = "";
+  inputElement.disabled = false;
 }
 
-// Event listener for 'Send' button to handle chat interaction
-document.getElementById("send-btn").addEventListener("click", sendMessage);
+// Only bind the event listener once for the "Send" button
+document.getElementById("send-btn").addEventListener("click", () => {
+  sendMessage();
+});
 
 // Allow sending message by pressing Enter key
 document
   .getElementById("user-input")
   .addEventListener("keypress", function (e) {
     if (e.key === "Enter") {
-      sendMessage();
+      e.preventDefault(); // Avoid any default action
+      sendMessage(); // Send the message when Enter is pressed
     }
   });
 

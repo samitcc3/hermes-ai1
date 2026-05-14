@@ -10,6 +10,14 @@ const azureSpeechKey = getQueryParam("azure_key");
 const azureRegion = getQueryParam("azure_region") || "eastus";
 const openAiModel = getQueryParam("model") || "gpt-5.4-mini";
 
+function keepPageLocked() {
+  if (window.matchMedia("(min-width: 901px)").matches) {
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }
+}
+
 const chatBox = document.getElementById("chat-box");
 const chatForm = document.getElementById("chat-form");
 const inputElement = document.getElementById("user-input");
@@ -95,6 +103,10 @@ function appendMessage(sender, text, options = {}) {
   wrapper.append(meta, bubble);
   chatBox.appendChild(wrapper);
   chatBox.scrollTop = chatBox.scrollHeight;
+  requestAnimationFrame(() => {
+    chatBox.scrollTop = chatBox.scrollHeight;
+    keepPageLocked();
+  });
   return wrapper;
 }
 
@@ -251,7 +263,7 @@ async function sendMessage(messageOverride) {
     appendMessage("hermes", `I hit an API issue: ${error.message}`);
   } finally {
     setBusy(false);
-    inputElement.focus();
+    inputElement.focus({ preventScroll: true });
   }
 }
 
@@ -270,6 +282,7 @@ document.getElementById("hint-container").addEventListener("click", (event) => {
 document.getElementById("shut-up-btn").addEventListener("click", stopSpeaking);
 
 window.addEventListener("load", () => {
+  keepPageLocked();
   if (!openAiApiKey) {
     keyWarning.hidden = false;
   }

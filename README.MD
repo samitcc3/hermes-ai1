@@ -1,34 +1,6 @@
-# Hermes Castano AI Interview Assistant
+# Hermes Castano AI Chatbot
 
-Static recruiter-facing AI interview assistant for Hermes Castano.
-
-## What it does
-
-- Runs from `index.html` with no server or build step.
-- Works on GitHub Pages or by opening the file locally.
-- Uses an OpenAI API key from the URL.
-- Optionally uses Azure Speech for voice output.
-- Keeps conversation context only in the current browser session.
-
-## Run it
-
-```text
-index.html?openai_key=YOUR_OPENAI_KEY
-```
-
-Optional voice:
-
-```text
-index.html?openai_key=YOUR_OPENAI_KEY&azure_key=YOUR_AZURE_SPEECH_KEY&azure_region=eastus
-```
-
-Optional model override:
-
-```text
-index.html?openai_key=YOUR_OPENAI_KEY&model=gpt-5.4-mini
-```
-
-## Files
+Static GitHub Pages version. Original folder structure preserved.
 
 ```text
 index.html
@@ -37,8 +9,10 @@ js/script.js
 images/imgSam.jfif
 ```
 
-Keep your existing `images/imgSam.jfif` file in place.
+Use URL parameters for local/live testing:
 
-## Design direction
+```text
+?openai_key=YOUR_OPENAI_KEY&azure_key=YOUR_AZURE_KEY
+```
 
-This version reduces dashboard noise and puts the chat first. The left side is only identity, positioning, target-role flexibility, and links. The right side is the actual recruiter conversation.
+Note: do not publish real API keys in public resume links. Use a backend/proxy for public access.

@@ -1,58 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hermes Castano AI Chat</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Hermes Castano AI profile for technical conversations." />
+  <title>Hermes Castano | Technical Experience AI</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-    <div class="chat-container">
-        <h1>Hermes Castano AI Chat</h1>
+  <main class="app-shell" aria-label="Hermes Castano AI technical profile">
+    <aside class="identity-panel" aria-label="Candidate profile">
+      <div class="profile-block">
+        <img src="images/imgSam.jfif" alt="Hermes Castano profile photo" />
+        <div class="name-block">
+          <span class="eyebrow">AI version of Hermes</span>
+          <h1>Hermes<br />Castano</h1>
+          <nav class="name-links" aria-label="Profile links">
+            <a href="https://www.linkedin.com/in/hermescastanoc/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://github.com/samitcc3" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </nav>
+        </div>
+      </div>
 
-        <!-- Image -->
-        <div class="image-container">
-            <img src="images/imgSam.jfif" alt="Hermes Castano Profile">
+      <p class="positioning">
+        Technology problem-solver working across enterprise applications, APIs, SQL, integrations, automation, and real-world technical incidents.
+      </p>
+
+      <div class="signal-grid" aria-label="Candidate highlights">
+        <div><strong>5+ yrs</strong><span>IT & enterprise apps</span></div>
+        <div><strong>L2-L3</strong><span>Complex issue solving</span></div>
+        <div><strong>APIs</strong><span>Postman + integrations</span></div>
+        <div><strong>SQL</strong><span>Data troubleshooting</span></div>
+      </div>
+
+      <div class="role-tags" aria-label="Target roles">
+        <span>Application Specialist</span>
+        <span>Platform Engineer</span>
+        <span>Technical Analyst</span>
+        <span>Systems / App Engineer</span>
+      </div>
+    </aside>
+
+    <section class="chat-panel" aria-label="Live AI interview chat">
+      <header class="chat-header">
+        <div>
+          <span class="status-pill"><i aria-hidden="true"></i> Ready for technical questions</span>
+          <h2>Ask Hermes how he solves technical problems.</h2>
+        </div>
+        <button id="shut-up-btn" class="ghost-button" type="button" title="Stop voice playback">Stop voice</button>
+      </header>
+
+      <div id="key-warning" class="key-warning" hidden>
+        Add <code>?openai_key=YOUR_KEY</code> to the URL to run live AI. Voice is optional with <code>&azure_key=YOUR_KEY</code>.
+      </div>
+
+      <div id="chat-box" class="chat-box" role="log" aria-live="polite" aria-label="Conversation history"></div>
+
+      <div class="composer-area">
+        <div id="hint-container" class="quick-prompts" aria-label="Suggested prompts">
+          <button class="hint" type="button" data-hint="Walk me through your experience solving technical problems in enterprise applications.">Enterprise apps</button>
+          <button class="hint" type="button" data-hint="How do you troubleshoot APIs, SQL issues, and production incidents?">APIs + SQL</button>
+          <button class="hint" type="button" data-hint="Why are you a strong fit for an Application Specialist, Platform Engineer, or Technical Analyst role?">Role fit</button>
         </div>
 
-        <!-- Social Media Icons -->
-        <div class="social-icons">
-            <a href="https://www.linkedin.com/in/samitcc3/" target="_blank" class="fab fa-linkedin"></a>
-            <a href="https://github.com/samitcc3" target="_blank" class="fab fa-github"></a>
-        </div>
+        <form id="chat-form" class="chat-input" autocomplete="off">
+          <label class="sr-only" for="user-input">Question</label>
+          <input type="text" id="user-input" placeholder="Ask about APIs, SQL, enterprise systems, incidents, workflow automation..." />
+          <button id="send-btn" type="submit"><span>Send</span></button>
+        </form>
+      </div>
+    </section>
+  </main>
 
-        <!-- Informative text below icons -->
-        <div class="info-text">
-            <p>Turn up the volume, this program speaks</p>
-        </div>
-
-        <!-- Hints Section -->
-        <div id="hint-container" class="hint-container">
-            <button class="hint" onclick="sendHint('Tell me about your professional experiences')">Tell me about your professional experiences</button>
-            <button class="hint" onclick="sendHint('Do you know about APIs and SQL?')">Do you know about APIs and SQL?</button>
-            <button class="hint" onclick="sendHint('How do you describe yourself?')">How do you describe yourself?</button>
-        </div>
-
-        <!-- Chatbox where conversation happens -->
-        <div id="chat-box">
-            <!-- Chat history will appear here -->
-        </div>
-
-        <!-- Input and Send Button -->
-        <div class="input-container">
-            <input type="text" id="user-input" placeholder="Ask me anything...">
-            <button id="send-btn" onclick="sendMessage()">Send</button>
-        </div>
-
-        <!-- Shut Up, Hermes button -->
-        <div class="shut-up-container">
-            <button id="shut-up-btn" class="shut-up-btn">Shut Up, Hermes</button>
-        </div>
-    </div>
-
-    <!-- Include Azure Speech SDK -->
-    <script src="https://aka.ms/csspeech/jsbrowserpackageraw"></script>
-    <script src="js/script.js"></script>
+  <script src="https://aka.ms/csspeech/jsbrowserpackageraw"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>
